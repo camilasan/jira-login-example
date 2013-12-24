@@ -1,0 +1,44 @@
+== README
+
+This is an app example how to connect a ruby app to Jira using OAuth.
+
+About Jira and OAuth Application Links you can read more at https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+Example+-+OAuth+authentication.
+
+For now this example is using the gem ruby-jira to do the login (https://github.com/sumoheavy/jira-ruby/blob/master/example.rb)
+
+After running bundle, you can generate the consumer key and the public key running these commands (in the repo folder):
+
+* rake jira:generate_consumer_key         # Generate a consumer key for your application
+* rake jira:generate_public_cert          # Run the system call to generate a RSA public certificate
+
+Then change the application_controller:
+
+  def jira_client
+
+    options = {
+              username: session[:user].nil? ? params[:sessions][:username] : session[:user],
+              private_key_file: 'rsakey.pem',
+              site: 'http://localhost:2990',
+              context_path: '/jira',
+              consumer_key: 'test', # add your consumer key here
+              consumer_name: 'JiraLoginExample'
+            }
+
+    @jira_client = JIRA::Client.new(options)
+
+    # Add AccessToken if authorised previously.
+    if session[:jira_auth]
+      @jira_client.set_access_token(
+        session[:jira_auth][:access_token],
+        session[:jira_auth][:access_key]
+      )
+    end
+
+  end
+
+You also need to have Jira SDK running, so you can create the Application Link and run the app.
+
+More info at https://developer.atlassian.com/display/DOCS/Set+up+the+Atlassian+Plugin+SDK+and+Build+a+Project
+
+
+
