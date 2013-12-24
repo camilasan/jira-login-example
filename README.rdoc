@@ -4,7 +4,7 @@ This is an app example how to connect a ruby app to Jira using OAuth.
 
 About Jira and OAuth Application Links you can read more at https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+Example+-+OAuth+authentication.
 
-For now this example is using the gem ruby-jira to do the login (https://github.com/sumoheavy/jira-ruby/blob/master/example.rb)
+For now this example is using the gem ruby-jira to do the login (https://github.com/sumoheavy/jira-ruby/)
 
 After running bundle, you can generate the consumer key and the public key running these commands (in the repo folder):
 
