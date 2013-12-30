@@ -1,8 +1,8 @@
 == README
 
-This is an app example how to connect a ruby app to Jira using OAuth.
+This is an app example how to login to a Ruby on Rails app trough Jira using OAuth.
 
-Update: now it uses https://github.com/camilasan/sorcery/ (sorcery with Jira) to connect to Jira :)
+**Update**: now it uses https://github.com/camilasan/sorcery/ (sorcery with Jira) to login to a Ruby on Rails app trough Jira using OAuth.
 
 -----------------------------------------------------------------------
 
