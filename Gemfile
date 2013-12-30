@@ -44,4 +44,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'jira-ruby', :require => 'jira'
+
+gem 'better_errors'
+
+gem 'sorcery', path: '~/Projects/sorcery'

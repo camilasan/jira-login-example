@@ -2,19 +2,14 @@
 
 class SessionsController < ApplicationController
 
-  before_filter :jira_client, only: [:create, :authorize]
+  #before_filter :jira_client, only: [:create, :authorize]
 
   def new
     render 'new'
   end
 
   def create
-    request_token = @jira_client.request_token
-    session[:request_token] = request_token.token
-    session[:request_secret] = request_token.secret
-    session[:user] = params[:sessions][:username]
-
-    redirect_to request_token.authorize_url
+    login_at(:jira)
   end
 
   def authorize
