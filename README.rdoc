@@ -2,48 +2,30 @@
 
 This is an app example how to login to a Ruby on Rails app trough Jira using OAuth.
 
-**Update**: now it uses https://github.com/camilasan/sorcery/ (sorcery with Jira) to login to a Ruby on Rails app trough Jira using OAuth.
-
------------------------------------------------------------------------
-
 About Jira and OAuth Application Links you can read more at https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+Example+-+OAuth+authentication.
 
-For now this example is using the gem ruby-jira to do the login (https://github.com/sumoheavy/jira-ruby/)
+This example is using the gem sorcery with JIRA to do the login (https://github.com/camilasan/sorcery/)
 
-After running bundle, you can generate the consumer key and the public key running these commands (in the repo folder):
+
+You can generate the consumer key and the public key running these commands (in the repo folder):
 
 * rake jira:generate_consumer_key         # Generate a consumer key for your application
 * rake jira:generate_public_cert          # Run the system call to generate a RSA public certificate
 
-Then change the application_controller:
+With these keys you can create the appliation link your JIRA instance and update the config/initializers/sorcery.rb file:
 
-  def jira_client
+  config.jira.key = "YourC0nsum3rkeyHere010101"
+  config.jira.secret = "JiraLoginExample"
+  config.jira.site = "http://localhost:2990/jira/plugins/servlet/oauth"
+  config.jira.signature_method = "RSA-SHA1"
+  config.jira.private_key_file = "rsakey.pem"
+  config.jira.callback_url = "http://localhost:3000/sessions/show/"
 
-    options = {
-              username: session[:user].nil? ? params[:sessions][:username] : session[:user],
-              private_key_file: 'rsakey.pem',
-              site: 'http://localhost:2990',
-              context_path: '/jira',
-              consumer_key: 'test', # add your consumer key here
-              consumer_name: 'JiraLoginExample'
-            }
 
-    @jira_client = JIRA::Client.new(options)
+More info:
 
-    # Add AccessToken if authorised previously.
-    if session[:jira_auth]
-      @jira_client.set_access_token(
-        session[:jira_auth][:access_token],
-        session[:jira_auth][:access_key]
-      )
-    end
-
-  end
-
-You also need to have Jira SDK running, so you can create the Application Link and run the app.
-
-More info at https://developer.atlassian.com/display/DOCS/Set+up+the+Atlassian+Plugin+SDK+and+Build+a+Project
-
+* https://developer.atlassian.com/display/DOCS/Set+up+the+Atlassian+Plugin+SDK+and+Build+a+Project
+* https://github.com/NoamB/sorcery/wiki/External
 
 
 

@@ -85,12 +85,12 @@ Rails.application.config.sorcery.configure do |config|
   # - access permissions go to https://developer.linkedin.com/documents/authentication#granting
   #
 
-  config.jira.key = "test"
+  config.jira.key = "YourConsumerKeyHere"
   config.jira.secret = "JiraLoginExample"
-  # config.jira.site = "http://localhost:2990/jira/plugins/servlet/oauth"
-  # config.jira.signature_method = "RSA-SHA1"
-  # config.jira.private_key_file = "rsakey.pem"
-  # config.jira.callback_url = "TEST.com"
+  config.jira.site = "http://localhost:2990/jira/plugins/servlet/oauth"
+  config.jira.signature_method = "RSA-SHA1"
+  config.jira.private_key_file = "rsakey.pem"
+  config.jira.callback_url = "http://localhost:3000/sessions/show/"
 
   # config.linkedin.key = ""
   # config.linkedin.secret = ""

@@ -1,11 +1,8 @@
 <h1>Session#new on JiraExample</h1>
 
 <%= form_for :sessions, action: :create do |f| %>
+
   <p>
-      <%= f.label :username %><br>
-      <%= f.text_field :username %>
-  </p>
-  <p>
-      <%= f.submit %>
+      <%= f.submit 'Login using your JIRA credentials' %>
   </p>
 <% end %>

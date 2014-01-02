@@ -3,7 +3,6 @@ JiraLoginExample::Application.routes.draw do
 
   get 'sessions/new', to: 'sessions#new'
   get 'sessions/show', to: 'sessions#show'
-  get 'sessions/authorize', to: 'sessions#authorize'
   post 'sessions/new', to: 'sessions#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
